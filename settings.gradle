@@ -1,0 +1,2 @@
+rootProject.name='PokeYellow'
+include ':app'
