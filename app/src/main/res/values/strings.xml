@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">PokeYellow</string>
+    <string name="api_base_url"></string>
+
+
+    <!-- Strings used for dialogs-->
+    <string name="acept">Aceptar</string>
+
+
 </resources>
