@@ -9,16 +9,13 @@ class FontSingleton {
     init {
         fontBold = Typeface.createFromAsset(
             AppController.applicationContext().assets,
-            "fonts/roboto_bold.ttf"
+            "fonts/trade_gothic_bold.ttf"
         )
         fontRegular = Typeface.createFromAsset(
             AppController.applicationContext().assets,
-            "fonts/roboto_regular.ttf"
+            "fonts/trade_gothic_regular.ttf"
         )
-        fontMedium = Typeface.createFromAsset(
-            AppController.applicationContext().assets,
-            "fonts/roboto_medium.ttf"
-        )
+
 
     }
 
@@ -26,7 +23,6 @@ class FontSingleton {
 
         var fontBold: Typeface? = null
         var fontRegular: Typeface? = null
-        var fontMedium: Typeface? = null
         private var mInstance: FontSingleton? = null
 
         fun getInstance(): FontSingleton {
