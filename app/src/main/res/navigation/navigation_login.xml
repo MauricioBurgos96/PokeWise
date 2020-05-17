@@ -9,7 +9,18 @@
         android:id="@+id/loginFragment"
         android:name="com.mauricioburgos.pokeyellow.presentation.view.login.LoginFragment"
         tools:layout="@layout/login_fragment"
-        android:label="LoginFragment" />
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_homeActivity"
+            app:destination="@id/homeActivity" />
+    </fragment>
+
+
+    <activity
+        android:id="@+id/homeActivity"
+        android:name="com.mauricioburgos.pokeyellow.presentation.view.home.HomeActivity"
+        android:label="activity_home"
+        tools:layout="@layout/activity_home" />
 
 
 </navigation>

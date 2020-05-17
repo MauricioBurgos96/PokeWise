@@ -10,7 +10,6 @@ import com.mauricioburgos.pokeyellow.presentation.view.dialogs.MessageDialog
 class Utils {
 
     companion object {
-        private var mCustomProgressDialog: CustomProgressDialog? = null
         inline fun View.snack(message: String, length: Int = Snackbar.LENGTH_LONG) {
         val snack = Snackbar.make(this, message, length)
         snack.show()
@@ -33,22 +32,7 @@ class Utils {
         snack.show()
     }
 
-        fun showProgressDialog(context: Context) {
-            if (mCustomProgressDialog == null) {
-                mCustomProgressDialog!!.show(context)
-            }
-        }
 
-        fun dismissProgressDialog() {
-            if (mCustomProgressDialog != null) {
-                try {
-                    mCustomProgressDialog!!.dialog.dismiss()
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-            }
-            mCustomProgressDialog = null
-        }
     }
 
     fun Snackbar.action(action: String, color: Int? = null, listener: (View) -> Unit) {

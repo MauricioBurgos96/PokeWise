@@ -6,6 +6,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.mauricioburgos.pokeyellow.presentation.viewmodel.LoginViewModel" />
     </data>
 
 
