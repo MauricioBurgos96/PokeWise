@@ -12,6 +12,7 @@
     <color name="colorYellow">#D1AF15</color>
     <color name="colorGray">#F0959595</color>
     <color name="colorRed">#FF5858</color>
+    <color name="colorRedPokedex">#C50505</color>
 
 
 </resources>

@@ -16,6 +16,15 @@
     </style>
 
 
+    <style name="BottomNavigationView" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="BottomNavigationView.Active" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+
     <style name="DialogTheme">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowNoTitle">true</item>

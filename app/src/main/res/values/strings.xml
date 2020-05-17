@@ -16,4 +16,16 @@
     <string name="welcome">Bienvenido, entrenador.</string>
 
 
+    <!-- Strings for bottom navigation-->
+    <string name="pokemons">Pokemons</string>
+    <string name="team">Equipo</string>
+    <string name="profile">Perfil</string>
+
+    <!-- Strings for home activity-->
+    <string name="all_pokemons">Todos los pokemons</string>
+    <string name="my_team">Mi Equipo</string>
+    <string name="my_profile">Mi Perfil</string>
+
+
+
 </resources>
