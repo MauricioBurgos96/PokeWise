@@ -15,17 +15,10 @@ data class TypesItem(@SerializedName("slot")
                      val type: Type)
 
 
-
-
-
-
-
-
 data class Type(@SerializedName("name")
                 val name: String = "",
                 @SerializedName("url")
                 val url: String = "")
-
 
 
 
