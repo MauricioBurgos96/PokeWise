@@ -5,6 +5,7 @@ import com.mauricioburgos.pokeyellow.R
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiProvider(
@@ -28,6 +29,7 @@ class ApiProvider(
         retrofit = Retrofit.Builder()
             .baseUrl(context.getString(R.string.api_base_url))
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(httpClientBuilder.build())
             .build()
 

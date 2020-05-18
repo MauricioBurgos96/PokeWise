@@ -62,9 +62,10 @@ dependencies {
     //Firebase analytics
     implementation 'com.google.firebase:firebase-analytics:17.2.2'
 
-    //RxJava
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.1'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+    //Rx
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.9'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
 
     //Fresco
     implementation 'com.facebook.fresco:fresco:2.1.0'
@@ -78,6 +79,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
     implementation 'com.squareup.okhttp3:okhttp:3.4.1'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
 
     //Navigation Components
     implementation 'androidx.navigation:navigation-fragment-ktx:2.2.1'
@@ -94,4 +96,7 @@ dependencies {
     //Glide
     implementation "com.github.bumptech.glide:glide:$glide_version"
     kapt "com.github.bumptech.glide:compiler:$glide_version"
+
+    //Paging
+    implementation 'androidx.paging:paging-runtime:2.1.0'
 }
