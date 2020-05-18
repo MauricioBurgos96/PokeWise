@@ -63,7 +63,7 @@ dependencies {
 
     //Mockito
     // Optional -- Mockito framework
-    testImplementation 'org.mockito:mockito-core:1.10.19'
+    testImplementation 'org.mockito:mockito-core:2.19.0'
 
 
     def androidx_test="1.1.0"
@@ -80,8 +80,9 @@ dependencies {
 
 
     //Mock.io
-    def mockk_version = "1.10.0"
+    def mockk_version = "1.9.3"
     androidTestImplementation "io.mockk:mockk-android:$mockk_version"
+    testImplementation 'org.mockito:mockito-inline:2.11.0'
 
 
     //  Android

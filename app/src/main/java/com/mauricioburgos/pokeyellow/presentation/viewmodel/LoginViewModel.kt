@@ -1,5 +1,6 @@
 package com.mauricioburgos.pokeyellow.presentation.viewmodel
 
+import android.util.Patterns
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -68,6 +69,8 @@ class LoginViewModel() : ViewModel() {
 
 
     }
+
+
 
 
 

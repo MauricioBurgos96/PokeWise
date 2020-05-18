@@ -37,6 +37,8 @@ data class UserSigninRequest(
 ) {
     companion object {
         fun empty() = UserSigninRequest(null, null)
+
+
     }
 
     fun isPasswordNotEmpty(): Boolean {
