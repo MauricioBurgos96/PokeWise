@@ -13,10 +13,10 @@ interface PokemonDao {
     fun getAllPokemonTeam(): LiveData<List<PokemonDetails>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertPokemonTeam(censoList: PokemonDetails)
+    suspend fun insertPokemonTeam(censoList: PokemonDetails)
 
     @Delete
-    fun deletePokemonTeam(censoList: PokemonDetails)
+    suspend fun deletePokemonTeam(censoList: PokemonDetails)
 
 
 }

@@ -13,6 +13,7 @@ import okhttp3.ResponseBody
 interface PokemonsRepository {
 
     fun getPokemonInfo(id: Int) : Either<Failure, PokemonDetails>
+    suspend fun insertCensoToSave(pokemonDetails: PokemonDetails)
 
 
 }

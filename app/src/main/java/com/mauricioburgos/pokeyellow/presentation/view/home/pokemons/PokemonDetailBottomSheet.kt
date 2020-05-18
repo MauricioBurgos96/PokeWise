@@ -13,6 +13,7 @@ import com.mauricioburgos.pokeyellow.core.utils.CustomProgressDialog
 import com.mauricioburgos.pokeyellow.core.utils.FontSingleton
 import com.mauricioburgos.pokeyellow.core.utils.Utils
 import com.mauricioburgos.pokeyellow.databinding.PokemonDetailBottomSheetBinding
+import com.mauricioburgos.pokeyellow.domain.PokemonDetails
 import com.mauricioburgos.pokeyellow.presentation.view.adapters.PokemonTypeAdapter
 import com.mauricioburgos.pokeyellow.presentation.viewmodel.PokemonInfoViewModel
 import com.mauricioburgos.pokeyellow.presentation.viewmodel.PokemonsViewModel
@@ -22,6 +23,7 @@ class PokemonDetailBottomSheet(private  val pokemonId: Int) : BottomSheetDialogF
     lateinit var binding: PokemonDetailBottomSheetBinding
     val progressDialog = CustomProgressDialog()
     private val adapter = PokemonTypeAdapter(mutableListOf())
+    var  pokemonDetails: PokemonDetails? = null
 
     private val pokemonInfoViewModel: PokemonInfoViewModel by lazy {
         ViewModelProvider(this@PokemonDetailBottomSheet).get(PokemonInfoViewModel::class.java)
@@ -42,9 +44,16 @@ class PokemonDetailBottomSheet(private  val pokemonId: Int) : BottomSheetDialogF
         pokemonInfoViewModel.loadCensosPokemon(pokemonId)
         progressDialog.show(context!!)
 
+        binding.btnSaveToTeam.setOnClickListener{
+            if(pokemonDetails != null) {
+                pokemonInfoViewModel.savePokemonDb(pokemonDetails!!)
+            }
+        }
+
         pokemonInfoViewModel.error.observe(viewLifecycleOwner, Observer {
             progressDialog.dialog.dismiss()
             Utils.displayMessage("Error",it.message!!, activity!!.supportFragmentManager!!)
+            dismiss()
 
         })
 
@@ -57,6 +66,7 @@ class PokemonDetailBottomSheet(private  val pokemonId: Int) : BottomSheetDialogF
     private fun observePokemon (){
         pokemonInfoViewModel!!.getMPokemon().observe(viewLifecycleOwner, Observer { pokemon ->
             progressDialog.dialog.dismiss()
+            pokemonDetails=pokemon
             binding.tvPokemonTitle.text = pokemon.name.capitalize()
             binding.tvPokemonDistance.text = "#${(pokemonId).toString()}"
             binding.ivPokemon.setImageURI("https://pokeres.bastionbot.org/images/pokemon/"+(pokemonId).toString()+".png")

@@ -34,7 +34,9 @@ class PokemonInfoViewModel() : ViewModel() {
 
 
 
-
+  fun savePokemonDb(pokemonDetails: PokemonDetails){
+    pokemonRepository.insertCensoToSave(pokemonDetails)
+  }
 
 
   fun loadCensosPokemon(censoId : Int) {

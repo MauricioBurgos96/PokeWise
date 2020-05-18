@@ -8,6 +8,7 @@ import com.mauricioburgos.pokeyellow.core.utils.Constants
 import com.mauricioburgos.pokeyellow.data.repositories.UserRepository
 import com.mauricioburgos.pokeyellow.core.utils.NetworkHandler
 import com.mauricioburgos.pokeyellow.core.utils.PreferencesHelper
+import com.mauricioburgos.pokeyellow.data.dao.PokemonDao
 import com.mauricioburgos.pokeyellow.data.repositories.PokemonsRepository
 import com.mauricioburgos.pokeyellow.domain.*
 import com.mauricioburgos.pokeyellow.framework.ApiRequest
@@ -18,6 +19,7 @@ import okhttp3.ResponseBody
 
 class PokemonsRepositoryImpl(
     private val networkHandler: NetworkHandler,
+    private val pokemonDao: PokemonDao,
     private val pokemonApi: PokemonApi,
     private val preferencesHelper: PreferencesHelper
 ): PokemonsRepository, ApiRequest {
@@ -34,7 +36,14 @@ class PokemonsRepositoryImpl(
 
     }
 
+    override suspend fun insertCensoToSave(pokemonDetails: PokemonDetails) {
+        try {
+            pokemonDao.insertPokemonTeam(pokemonDetails)
 
+        } catch (e: Throwable) {
+            e.printStackTrace()
+        }
+    }
 
 
 }

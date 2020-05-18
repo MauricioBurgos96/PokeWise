@@ -1,6 +1,7 @@
 package com.mauricioburgos.pokeyellow.core.di
 
 
+import com.dacodes.censos.data.dao.PokemonDatabase
 import com.mauricioburgos.pokeyellow.core.utils.NetworkHandler
 import com.mauricioburgos.pokeyellow.core.utils.PreferencesHelper
 import com.mauricioburgos.pokeyellow.data.implementations.PokemonsRepositoryImpl
@@ -33,10 +34,12 @@ class RepositoryModule {
     @Singleton
     fun providesPokemonRepository(
         networkHandler: NetworkHandler,
+        database: PokemonDatabase,
         apiProvider: ApiProvider,
         preferencesHelper: PreferencesHelper
     ) : PokemonsRepository = PokemonsRepositoryImpl(
         networkHandler,
+        database.pokemonDao(),
         apiProvider.getEndpoint(PokemonApi::class.java),
         preferencesHelper
 
