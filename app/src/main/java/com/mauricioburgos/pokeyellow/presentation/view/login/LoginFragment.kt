@@ -49,7 +49,6 @@ class LoginFragment() : Fragment() {
         navController = findNavController()
 
         if(loginViewModel.getIsLogged()){
-
              activity!!.finish()
              navController.navigate(R.id.action_loginFragment_to_homeActivity)
 

@@ -59,7 +59,7 @@ class PokemonInfoViewModel() : ViewModel() {
               { failure ->
                 val errorResponse = (failure as Failure.ServerError).errorResponse
                 if(errorResponse.code==100){
-                  error.value = ErrorResponse(100,"Sin conexión a internet: modo offline")
+                  error.value = ErrorResponse(100,"Sin conexión a internet")
 
                 }
                 else{

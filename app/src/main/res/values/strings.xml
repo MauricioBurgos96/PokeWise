@@ -19,12 +19,12 @@
     <!-- Strings for bottom navigation-->
     <string name="pokemons">Pokemons</string>
     <string name="team">Equipo</string>
-    <string name="profile">Perfil</string>
+    <string name="settings">Configurar</string>
 
     <!-- Strings for home activity-->
     <string name="all_pokemons">Todos los pokemons</string>
     <string name="my_team">Mi Equipo</string>
-    <string name="my_profile">Mi Perfil</string>
+    <string name="my_settings">Mis Configuraciones</string>
 
 
     <!-- Strings for details bottom sheet-->
@@ -32,6 +32,11 @@
     <string name="weight">Altura:</string>
     <string name="type">Tipo:</string>
     <string name="addTeam">Agregar al equipo</string>
+
+    <!-- Strings for settings activity-->
+
+    <string name="logout">Salir</string>
+    <string name="delete_team">Borrar equipo</string>
 
 
 </resources>

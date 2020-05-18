@@ -40,9 +40,7 @@ class LoginViewModel() : ViewModel() {
     fun getLoginUserLiveData(): LiveData<UserSigninRequest> = userMutableLiveData
 
     fun getIsLogged(): Boolean{
-      //  return userRepository.getIsLogged()
-
-        return false
+        return userRepository.getIsLogged()
     }
 
     fun checkUserData(){

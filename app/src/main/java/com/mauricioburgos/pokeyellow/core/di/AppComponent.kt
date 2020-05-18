@@ -1,6 +1,7 @@
 package com.mauricioburgos.pokeyellow.core.di
 
 import com.mauricioburgos.pokeyellow.AppController
+import com.mauricioburgos.pokeyellow.presentation.view.home.profile.ProfileFragment
 import com.mauricioburgos.pokeyellow.presentation.viewmodel.LoginViewModel
 import com.mauricioburgos.pokeyellow.presentation.viewmodel.PokemonInfoViewModel
 import com.mauricioburgos.pokeyellow.presentation.viewmodel.PokemonTeamViewModel
@@ -25,6 +26,7 @@ interface AppComponent {
     fun inject(target: PokemonsViewModel)
     fun inject(target: PokemonInfoViewModel)
     fun inject(target: PokemonTeamViewModel)
+    fun inject(target: ProfileFragment)
 
 
 
