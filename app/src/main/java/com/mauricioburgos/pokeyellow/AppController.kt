@@ -4,7 +4,9 @@ import android.app.Application
 import android.content.Context
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.google.firebase.FirebaseApp
+import com.mauricioburgos.pokeyellow.core.di.AppComponent
 import com.mauricioburgos.pokeyellow.core.di.AppModule
+import com.mauricioburgos.pokeyellow.core.di.DaggerAppComponent
 import com.mauricioburgos.pokeyellow.core.utils.FontSingleton
 
 

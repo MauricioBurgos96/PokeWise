@@ -24,6 +24,8 @@ class PokemonsRepositoryImpl(
     private val preferencesHelper: PreferencesHelper
 ): PokemonsRepository, ApiRequest {
 
+    private val allPokemons: LiveData<List<PokemonDetails>> = pokemonDao.getAllPokemonTeam()
+
 
     override fun getPokemonInfo(id: Int): Either<Failure, PokemonDetails> {
         return when(networkHandler.isConnected){
@@ -44,6 +46,8 @@ class PokemonsRepositoryImpl(
             e.printStackTrace()
         }
     }
+
+    override fun getSavedPokemons()= allPokemons
 
 
 }
