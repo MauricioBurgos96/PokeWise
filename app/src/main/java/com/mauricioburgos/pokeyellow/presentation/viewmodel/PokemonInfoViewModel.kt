@@ -41,7 +41,7 @@ class PokemonInfoViewModel() : ViewModel() {
 
 
   suspend fun savePokemonDb(pokemonDetails: PokemonDetails){
-    pokemonRepository.insertCensoToSave(pokemonDetails)
+    pokemonRepository.insertPokemon(pokemonDetails)
   }
 
 

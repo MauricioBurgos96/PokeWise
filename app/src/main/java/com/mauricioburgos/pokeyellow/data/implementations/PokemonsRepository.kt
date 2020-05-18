@@ -38,7 +38,7 @@ class PokemonsRepositoryImpl(
 
     }
 
-    override suspend fun insertCensoToSave(pokemonDetails: PokemonDetails) {
+    override suspend fun insertPokemon(pokemonDetails: PokemonDetails) {
         try {
             pokemonDao.insertPokemonTeam(pokemonDetails)
 
@@ -48,6 +48,16 @@ class PokemonsRepositoryImpl(
     }
 
     override fun getSavedPokemons()= allPokemons
+
+
+    override suspend fun deleteSavedPokemons() {
+        try {
+            pokemonDao.deleteAllSavedPokemons()
+
+        } catch (e: Throwable) {
+            e.printStackTrace()
+        }
+    }
 
 
 }

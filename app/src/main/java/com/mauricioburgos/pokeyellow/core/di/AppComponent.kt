@@ -1,11 +1,9 @@
 package com.mauricioburgos.pokeyellow.core.di
 
 import com.mauricioburgos.pokeyellow.AppController
+import com.mauricioburgos.pokeyellow.presentation.view.home.pokemons.PokemonsFragment
 import com.mauricioburgos.pokeyellow.presentation.view.home.profile.ProfileFragment
-import com.mauricioburgos.pokeyellow.presentation.viewmodel.LoginViewModel
-import com.mauricioburgos.pokeyellow.presentation.viewmodel.PokemonInfoViewModel
-import com.mauricioburgos.pokeyellow.presentation.viewmodel.PokemonTeamViewModel
-import com.mauricioburgos.pokeyellow.presentation.viewmodel.PokemonsViewModel
+import com.mauricioburgos.pokeyellow.presentation.viewmodel.*
 import dagger.Component
 import javax.inject.Singleton
 
@@ -27,6 +25,8 @@ interface AppComponent {
     fun inject(target: PokemonInfoViewModel)
     fun inject(target: PokemonTeamViewModel)
     fun inject(target: ProfileFragment)
+    fun inject(target: SettingsViewModel)
+    fun inject(target: PokemonsFragment)
 
 
 

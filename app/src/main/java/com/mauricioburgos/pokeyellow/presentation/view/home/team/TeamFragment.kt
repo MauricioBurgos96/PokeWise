@@ -25,7 +25,7 @@ import com.mauricioburgos.pokeyellow.presentation.viewmodel.PokemonsViewModel
 
 class TeamFragment() : Fragment() {
     private val adapter = SavedPokemonAdapter(mutableListOf())
-
+    lateinit var binding: TeamFragmentBinding
     private val pokemonTeamViewModel: PokemonTeamViewModel by lazy {
         ViewModelProvider(this@TeamFragment).get(PokemonTeamViewModel::class.java)
     }
@@ -42,7 +42,7 @@ class TeamFragment() : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: TeamFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.team_fragment, container, false)
+         binding = DataBindingUtil.inflate(inflater, R.layout.team_fragment, container, false)
 
         (activity as HomeActivity).changeToolbarText(getString(R.string.my_team))
 
@@ -63,7 +63,15 @@ class TeamFragment() : Fragment() {
 
     private fun observePokemonsSaved (){
         pokemonTeamViewModel.getAllPokemons().observe(viewLifecycleOwner, Observer { pokemons ->
-            Toast.makeText(context, "Tienes ${pokemons.size.toString()} pokemons guardados.", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(context, "Tienes ${pokemons.size.toString()} pokemons guardados.", Toast.LENGTH_SHORT).show()
+            if(pokemons.isEmpty()){
+                binding.placeholderLayout.visibility = View.VISIBLE
+
+            }
+            else{
+                binding.placeholderLayout.visibility = View.INVISIBLE
+
+            }
             adapter.setData(pokemons)
 
         })

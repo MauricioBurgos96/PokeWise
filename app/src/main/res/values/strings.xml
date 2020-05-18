@@ -25,6 +25,7 @@
     <string name="all_pokemons">Todos los pokemons</string>
     <string name="my_team">Mi Equipo</string>
     <string name="my_settings">Mis Configuraciones</string>
+    <string name="empty_list">La lista esta vacia</string>
 
 
     <!-- Strings for details bottom sheet-->

@@ -18,5 +18,6 @@ interface PokemonDao {
     @Delete
     suspend fun deletePokemonTeam(censoList: PokemonDetails)
 
-
+    @Query("DELETE FROM team_pokemons")
+    suspend fun deleteAllSavedPokemons()
 }

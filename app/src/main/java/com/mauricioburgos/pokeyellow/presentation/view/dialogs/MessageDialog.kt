@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.view.Window
 import androidx.fragment.app.DialogFragment
 import com.mauricioburgos.pokeyellow.R
+import com.mauricioburgos.pokeyellow.core.utils.FontSingleton
 import kotlinx.android.synthetic.main.dialog_message_layout.*
 
 
@@ -20,6 +21,7 @@ class MessageDialog constructor(var title: String, var subtitle: String) : Dialo
         dialog!!.window?.requestFeature(Window.FEATURE_NO_TITLE)
 
         tvTitle_DiagNot.text= title
+        tvTitle_DiagNot.typeface= FontSingleton.fontBold
         tvSubTitle_DiagNot.text=subtitle
 
         tvAccept_DiagNot.setOnClickListener(clickListener)
