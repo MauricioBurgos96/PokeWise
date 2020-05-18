@@ -29,8 +29,8 @@
 
 
     <!-- Strings for details bottom sheet-->
-    <string name="height">Tamaño:</string>
-    <string name="weight">Altura:</string>
+    <string name="height">Altura:</string>
+    <string name="weight">Peso:</string>
     <string name="type">Tipo:</string>
     <string name="addTeam">Agregar al equipo</string>
 
