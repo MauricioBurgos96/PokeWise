@@ -4,13 +4,10 @@ import androidx.lifecycle.*
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.mauricioburgos.pokeyellow.AppController
-import com.mauricioburgos.pokeyellow.core.platform.Failure
 import com.mauricioburgos.pokeyellow.data.datasource.PokemonDataSource
 import com.mauricioburgos.pokeyellow.data.datasource.PokemonDataSourceFactory
-import com.mauricioburgos.pokeyellow.data.repositories.UserRepository
 import com.mauricioburgos.pokeyellow.domain.*
 import com.mauricioburgos.pokeyellow.framework.ApiProvider
-import com.mauricioburgos.pokeyellow.usecases.GetPokemonsUseCase
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
@@ -27,7 +24,6 @@ class PokemonsViewModel() : ViewModel() {
 
     init {
         AppController.component.inject(this)
-
         pokemonDataSourceFactory = PokemonDataSourceFactory(compositeDisposable, apiProvider.getEndpoint(PokemonApi::class.java))
         val config = PagedList.Config.Builder()
             .setPageSize(pageSize)

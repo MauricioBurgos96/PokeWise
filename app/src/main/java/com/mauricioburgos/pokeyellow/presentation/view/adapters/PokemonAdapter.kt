@@ -18,8 +18,8 @@ class PokemonAdapter(private val pokemonClick: () -> Unit)
     : PagedListAdapter<Pokemon, PokemonAdapter.PokemonHolder>(PokemonDiffCallback) {
 
     private var state = State.LOADING
-    private val clickPokemonSubject = PublishSubject.create<Pokemon>()
-    val clickPokemonEvent: Observable<Pokemon> = clickPokemonSubject
+    private val clickPokemonSubject = PublishSubject.create<Int>()
+    val clickPokemonEvent: Observable<Int> = clickPokemonSubject
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -60,7 +60,7 @@ class PokemonAdapter(private val pokemonClick: () -> Unit)
         holder.binding.ivPokemon.setImageURI("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+(position+1).toString()+".png")
 
         holder.binding.cwPokemon.setOnClickListener {
-            clickPokemonSubject.onNext(pokemon)
+            clickPokemonSubject.onNext(position)
 
 
         }

@@ -85,8 +85,8 @@ class PokemonsFragment() : Fragment() {
 
     private fun onPokemonClick() {
         subscribe = pokemonListAdapter.clickPokemonEvent
-            .subscribe {orders ->
-                val bottomSheetFragment = PokemonDetailBottomSheet()
+            .subscribe {position  ->
+                val bottomSheetFragment = PokemonDetailBottomSheet(position+1)
                 bottomSheetFragment.show(activity!!.supportFragmentManager, bottomSheetFragment.tag)
             }
     }

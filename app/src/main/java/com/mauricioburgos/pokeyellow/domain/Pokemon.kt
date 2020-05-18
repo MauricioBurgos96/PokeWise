@@ -2,10 +2,14 @@ package com.mauricioburgos.pokeyellow.domain
 
 
 import com.google.gson.annotations.SerializedName
-import com.mauricioburgos.pokeyellow.framework.ApiResponse
+import io.reactivex.Flowable
 import io.reactivex.Single
+import okhttp3.ResponseBody
 import retrofit2.Call
-import retrofit2.http.*
+import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
+
 
 data class Pokemon(@SerializedName("name")
                        val name: String = "",
@@ -25,6 +29,12 @@ interface PokemonApi {
     @GET("pokemon")
     fun getPokemons(
         @Query("offset") page: Int, @Query("limit") pageSize: Int): Single<Response>
+
+    @GET("pokemon/{id}/")
+    fun getPokemonInfo(
+        @Path("id") id: Int
+    ):Call<PokemonDetails>
+
 
 }
 
