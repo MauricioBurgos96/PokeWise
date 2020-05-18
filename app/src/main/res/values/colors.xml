@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#AC182C</color>
-    <color name="colorPrimaryDark">#AC182C</color>
-    <color name="colorAccent">#AC182C</color>
+    <color name="colorPrimary">#02A553</color>
+    <color name="colorPrimaryDark">#02A553</color>
+    <color name="colorAccent">#02A553</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
+    <color name="dialogBackGround">#70000000</color>
+    <color name="colorGrayTr">#F0CAC9C9</color>
+    <color name="colorBlackTr">#9A000000</color>
+    <color name="colorGreen">#0B9E09</color>
+    <color name="colorYellow">#D1AF15</color>
+    <color name="colorGray">#F0959595</color>
+    <color name="colorRed">#FF5858</color>
+    <color name="colorRedPokedex">#C50505</color>
+    <color name="colorGrayTwo">#F9F9F9</color>
+    <color name="colorWhiteTr">#E48F8A8A</color>
+
+
 </resources>

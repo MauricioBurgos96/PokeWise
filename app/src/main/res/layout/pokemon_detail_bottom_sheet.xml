@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.view.login.LoginFragment"
+    >
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scrollview"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/addLayout"
+                >
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/cnsPokemonHolder"
+                    app:layout_constraintTop_toTopOf="parent"
+
+                    >
+
+
+                    <TextView
+                        android:id="@+id/tvPokemonTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginRight="5dp"
+                        android:textColor="@color/colorRedPokedex"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Pokemon name" />
+
+                    <TextView
+                        android:id="@+id/tvPokemonDistance"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="25dp"
+                        android:textColor="@color/colorGray"
+                        android:textSize="18sp"
+                        app:layout_constraintLeft_toRightOf="@id/tvPokemonTitle"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tvPokemonTitle"
+                        app:layout_constraintBottom_toBottomOf="@id/tvPokemonTitle"
+                        tools:text="#Pokedex" />
+
+
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/ivPokemon"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvPokemonTitle"
+                        tools:text="Calle 4 Diagonal 170, Residencial Montecristo, 97133 Mérida, Yuc."
+                        android:layout_marginTop="7dp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="25dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginBottom="10dp"
+                        />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/tvHeight"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="5dp"
+                    android:textColor="@color/colorRedPokedex"
+                    android:textSize="15sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tvHeightText"
+                    app:layout_constraintBottom_toBottomOf="@id/tvHeightText"
+                    android:text="@string/height"
+                    />
+
+                <TextView
+                    android:id="@+id/tvHeightText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="25dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="15sp"
+                    app:layout_constraintLeft_toRightOf="@id/tvHeight"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cnsPokemonHolder"
+                    tools:text="(8.8km)" />
+
+
+                <TextView
+                    android:id="@+id/tvWeight"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="5dp"
+                    android:textColor="@color/colorRedPokedex"
+                    android:textSize="15sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tvWeightText"
+                    app:layout_constraintBottom_toBottomOf="@id/tvWeightText"
+                    android:text="@string/weight"
+                    />
+
+                <TextView
+                    android:id="@+id/tvWeightText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="25dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="15sp"
+                    app:layout_constraintLeft_toRightOf="@id/tvWeight"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvHeightText"
+                    tools:text="(8.8km)" />
+
+
+                
+
+                <TextView
+                    android:id="@+id/tvType"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="5dp"
+                    android:textColor="@color/colorRedPokedex"
+                    android:textSize="15sp"
+                    android:paddingTop="10dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/typesRecyclerView"
+                    android:text="@string/type"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/typesRecyclerView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="5dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:orientation="horizontal"
+                    app:layout_constraintLeft_toRightOf="@id/tvType"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvWeightText" />
+
+
+               
+
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/typesRecyclerView"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/view1"
+                    android:src="@drawable/dotted_line"
+
+                    />
+
+
+                <Button
+                    android:id="@+id/btnSaveToTeam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/red_round_rectangle"
+                    android:paddingLeft="50dp"
+                    android:paddingRight="50dp"
+                    android:text="@string/addTeam"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="20dp"
+
+
+                    />
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </ScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

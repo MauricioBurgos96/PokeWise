@@ -1,3 +1,43 @@
 <resources>
     <string name="app_name">PokeYellow</string>
+    <string name="api_base_url">https://pokeapi.co/api/v2/</string>
+
+
+    <!-- Strings used for dialogs-->
+    <string name="acept">Aceptar</string>
+
+    <!-- Strings used for login-->
+
+    <string name="password">Contraseña</string>
+    <string name="user">Correo electrónico</string>
+    <string name="email">Correo electrónico</string>
+    <string name="login">Iniciar Sesión</string>
+    <string name="enter">Iniciar sesión</string>
+    <string name="welcome">Bienvenido, entrenador.</string>
+
+
+    <!-- Strings for bottom navigation-->
+    <string name="pokemons">Pokemons</string>
+    <string name="team">Equipo</string>
+    <string name="settings">Configurar</string>
+
+    <!-- Strings for home activity-->
+    <string name="all_pokemons">Todos los pokemons</string>
+    <string name="my_team">Mi Equipo</string>
+    <string name="my_settings">Mis Configuraciones</string>
+    <string name="empty_list">La lista esta vacia</string>
+
+
+    <!-- Strings for details bottom sheet-->
+    <string name="height">Altura:</string>
+    <string name="weight">Peso:</string>
+    <string name="type">Tipo:</string>
+    <string name="addTeam">Agregar al equipo</string>
+
+    <!-- Strings for settings activity-->
+
+    <string name="logout">Salir</string>
+    <string name="delete_team">Borrar equipo</string>
+
+
 </resources>
