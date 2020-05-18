@@ -60,7 +60,7 @@ class LoginFragment() : Fragment() {
         binding.ivLogoLoginfrag.setActualImageResource(R.drawable.ic_app_icon)
 
         loginViewModel.logged.observe(viewLifecycleOwner, Observer {
-            progressDialog.dialog.dismiss()
+            progressDialog.dialog!!.dismiss()
 
 
             if(it){
@@ -70,7 +70,7 @@ class LoginFragment() : Fragment() {
         }
         )
         loginViewModel.error.observe(viewLifecycleOwner, Observer {
-            progressDialog.dialog.dismiss()
+            progressDialog.dialog!!.dismiss()
             Utils.displayMessage("Error",it.message!!, requireActivity().supportFragmentManager)
 
         })

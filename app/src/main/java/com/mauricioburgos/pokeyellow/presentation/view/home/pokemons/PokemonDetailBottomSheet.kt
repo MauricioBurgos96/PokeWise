@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -17,7 +16,6 @@ import com.mauricioburgos.pokeyellow.databinding.PokemonDetailBottomSheetBinding
 import com.mauricioburgos.pokeyellow.domain.PokemonDetails
 import com.mauricioburgos.pokeyellow.presentation.view.adapters.PokemonTypeAdapter
 import com.mauricioburgos.pokeyellow.presentation.viewmodel.PokemonInfoViewModel
-import com.mauricioburgos.pokeyellow.presentation.viewmodel.PokemonsViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
@@ -58,8 +56,10 @@ class PokemonDetailBottomSheet(private  val pokemonId: Int) : BottomSheetDialogF
             }
         }
 
+
+
         pokemonInfoViewModel.error.observe(viewLifecycleOwner, Observer {
-            progressDialog.dialog.dismiss()
+            progressDialog.dialog!!.dismiss()
             Utils.displayMessage("Error",it.message!!, activity!!.supportFragmentManager!!)
             dismiss()
 
@@ -69,11 +69,15 @@ class PokemonDetailBottomSheet(private  val pokemonId: Int) : BottomSheetDialogF
         return binding.root
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        progressDialog.dialog!!.dismiss()
 
+    }
 
     private fun observePokemon (){
         pokemonInfoViewModel.getMPokemon().observe(viewLifecycleOwner, Observer { pokemon ->
-            progressDialog.dialog.dismiss()
+            progressDialog.dialog!!.dismiss()
             pokemonDetails=pokemon
             binding.tvPokemonTitle.text = pokemon.name.capitalize()
             binding.tvPokemonDistance.text = "#${(pokemonId).toString()}"

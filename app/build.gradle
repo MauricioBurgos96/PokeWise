@@ -27,6 +27,15 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
 
     dataBinding {
         enabled = true
@@ -43,8 +52,36 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     testImplementation 'junit:junit:4.12'
+
+
+    //UiTesting
+    def androidx_test_expresso="3.1.0"
+
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidx_test_expresso"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$androidx_test_expresso"
+
+    //Mockito
+    // Optional -- Mockito framework
+    testImplementation 'org.mockito:mockito-core:1.10.19'
+
+
+    def androidx_test="1.1.0"
+    androidTestImplementation "androidx.test:runner:$androidx_test"
+    androidTestImplementation "androidx.test:core:$androidx_test"
+    androidTestImplementation "androidx.test.ext:junit-ktx:$androidx_test"
+
+
+    //fragment testing
+    def fragment_version="1.2.0-rc01"
+
+    implementation "androidx.fragment:fragment:$fragment_version"
+    debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
+
+
+    //Mock.io
+    def mockk_version = "1.10.0"
+    androidTestImplementation "io.mockk:mockk-android:$mockk_version"
 
 
     //  Android

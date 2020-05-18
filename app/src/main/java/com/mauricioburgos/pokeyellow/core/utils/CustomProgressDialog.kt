@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.progress_dialog_layout.view.*
 
 class CustomProgressDialog {
 
-    lateinit var dialog: CustomDialog
+    var dialog: CustomDialog? = null
 
     fun show(context: Context): Dialog {
         return show(context, null)
@@ -38,10 +38,10 @@ class CustomProgressDialog {
         view.cp_title.setTextColor(Color.WHITE)
 
         dialog = CustomDialog(context)
-        dialog.setContentView(view)
-        dialog.setCancelable(false)
-        dialog.show()
-        return dialog
+        dialog!!.setContentView(view)
+        dialog!!.setCancelable(false)
+        dialog!!.show()
+        return dialog!!
     }
 
     private fun setColorFilter(drawable: Drawable, color: Int) {

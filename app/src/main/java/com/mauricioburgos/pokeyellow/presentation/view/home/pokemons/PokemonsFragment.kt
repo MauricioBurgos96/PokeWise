@@ -58,6 +58,12 @@ class PokemonsFragment() : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.pokemons_fragment, container, false)
         navController = findNavController()
 
+
+        if(progressDialog.dialog!=null){
+            progressDialog.dialog!!.dismiss()
+
+        }
+
         (activity as HomeActivity).changeToolbarText(getString(R.string.all_pokemons))
 
         if (isOnline(context!!)) {
@@ -82,6 +88,10 @@ class PokemonsFragment() : Fragment() {
     }
 
     private fun initAdapter() {
+        if(progressDialog.dialog!=null){
+            progressDialog.dialog!!.dismiss()
+
+        }
         pokemonListAdapter = PokemonAdapter { pokemonsViewModel.retry() }
         binding.pokemonRecyclerView.adapter = pokemonListAdapter
         pokemonsViewModel.newsList.observe(viewLifecycleOwner, Observer {
@@ -91,10 +101,23 @@ class PokemonsFragment() : Fragment() {
     }
 
     private fun initState() {
+        if(progressDialog.dialog!=null){
+            progressDialog.dialog!!.dismiss()
+
+        }
+
         pokemonsViewModel.getState().observe(viewLifecycleOwner, Observer { state ->
-            if (pokemonsViewModel.listIsEmpty() && state == State.LOADING) progressDialog.show(
-                context!!
-            ) else progressDialog.dialog.dismiss()
+            if (pokemonsViewModel.listIsEmpty() && state == State.LOADING){
+                progressDialog.show(
+                    context!!
+                )
+            }
+             else {
+                if(progressDialog.dialog!=null){
+                    progressDialog.dialog!!.dismiss()
+
+                }
+           }
             if (!pokemonsViewModel.listIsEmpty()) {
                 pokemonListAdapter.setState(state ?: State.DONE)
             }
