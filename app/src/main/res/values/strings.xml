@@ -27,5 +27,11 @@
     <string name="my_profile">Mi Perfil</string>
 
 
+    <!-- Strings for details bottom sheet-->
+    <string name="height">Tamaño:</string>
+    <string name="weight">Altura:</string>
+    <string name="type">Tipo:</string>
+    <string name="addTeam">Agregar al equipo</string>
+
 
 </resources>

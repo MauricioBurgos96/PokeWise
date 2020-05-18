@@ -84,13 +84,13 @@ class LoginFragment() : Fragment() {
     private fun configureLiveDataObservers() {
         loginViewModel.getLoginUserLiveData().observe(viewLifecycleOwner, Observer { user ->
             if ((user).username.isNullOrEmpty()) {
-                Utils.displayMessage("Error","Ingrese un correo electrónico ", fragmentManager!!)
+                Utils.displayMessage("Error","Ingrese un correo electrónico ", activity!!.supportFragmentManager)
 
             } else if (!(user).isEmailValid()) {
-                Utils.displayMessage("Error","Correo electrónico invalido", fragmentManager!!)
+                Utils.displayMessage("Error","Correo electrónico invalido", activity!!.supportFragmentManager)
 
             } else if ((user).password.isNullOrEmpty()) {
-                Utils.displayMessage("Error","Ingrese contraseña", fragmentManager!!)
+                Utils.displayMessage("Error","Ingrese contraseña", activity!!.supportFragmentManager)
 
             }
             else {

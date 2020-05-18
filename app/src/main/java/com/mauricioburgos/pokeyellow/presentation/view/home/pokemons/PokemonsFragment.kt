@@ -21,6 +21,7 @@ import com.mauricioburgos.pokeyellow.presentation.view.adapters.PokemonAdapter
 import com.mauricioburgos.pokeyellow.presentation.view.home.HomeActivity
 import com.mauricioburgos.pokeyellow.presentation.viewmodel.LoginViewModel
 import com.mauricioburgos.pokeyellow.presentation.viewmodel.PokemonsViewModel
+import io.reactivex.disposables.Disposable
 
 
 class PokemonsFragment() : Fragment() {
@@ -29,6 +30,7 @@ class PokemonsFragment() : Fragment() {
     lateinit var binding: PokemonsFragmentBinding
     val progressDialog = CustomProgressDialog()
     private lateinit var pokemonListAdapter: PokemonAdapter
+    private var subscribe: Disposable? = null
 
     private val pokemonsViewModel: PokemonsViewModel by lazy {
         ViewModelProvider(this@PokemonsFragment).get(PokemonsViewModel::class.java)
@@ -52,11 +54,10 @@ class PokemonsFragment() : Fragment() {
 
         (activity as HomeActivity).changeToolbarText(getString(R.string.all_pokemons))
 
-
-
         initAdapter()
-        initState()
+        onPokemonClick()
 
+        initState()
 
         return binding.root
     }
@@ -73,15 +74,27 @@ class PokemonsFragment() : Fragment() {
 
     private fun initState() {
         pokemonsViewModel.getState().observe(viewLifecycleOwner, Observer { state ->
-            if (pokemonsViewModel.listIsEmpty() && state == State.LOADING)  progressDialog.show(context!!) else  progressDialog.dialog.dismiss()
-            if (!pokemonsViewModel.listIsEmpty()) {
+                if (pokemonsViewModel.listIsEmpty() && state == State.LOADING) progressDialog.show(
+                    context!!
+                ) else progressDialog.dialog.dismiss()
+                if (!pokemonsViewModel.listIsEmpty()) {
                 pokemonListAdapter.setState(state ?: State.DONE)
             }
         })
     }
 
+    private fun onPokemonClick() {
+        subscribe = pokemonListAdapter.clickPokemonEvent
+            .subscribe {orders ->
+                val bottomSheetFragment = PokemonDetailBottomSheet()
+                bottomSheetFragment.show(activity!!.supportFragmentManager, bottomSheetFragment.tag)
+            }
+    }
 
-
+    override fun onDestroy() {
+        super.onDestroy()
+        subscribe?.dispose()
+    }
 
     override fun onResume() {
         super.onResume()

@@ -14,41 +14,25 @@ import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 
 
-class PokemonAdapter(private val retry: () -> Unit)
-    : PagedListAdapter<Pokemon, RecyclerView.ViewHolder>(PokemonDiffCallback) {
+class PokemonAdapter(private val pokemonClick: () -> Unit)
+    : PagedListAdapter<Pokemon, PokemonAdapter.PokemonHolder>(PokemonDiffCallback) {
 
-    private val clickCensoSubject = PublishSubject.create<Pokemon>()
     private var state = State.LOADING
-    val clickCensoEvent: Observable<Pokemon> = clickCensoSubject
+    private val clickPokemonSubject = PublishSubject.create<Pokemon>()
+    val clickPokemonEvent: Observable<Pokemon> = clickPokemonSubject
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonHolder {
-        return PokemonHolder.create(parent)
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = DataBindingUtil.inflate<ItemPokemonBinding>(layoutInflater, R.layout.item_pokemon,parent, false)
+        return PokemonHolder(binding)
     }
 
     override fun getItemCount(): Int {
         return super.getItemCount()
+
     }
-    class PokemonHolder(val binding: ItemPokemonBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(pokemons: Pokemon ?) {
+    class PokemonHolder(val binding: ItemPokemonBinding) : RecyclerView.ViewHolder(binding.root)
 
-            binding.tvPokemonName.text = pokemons!!.name
-
-            //binding.ivPokemon.setImageURI("https://pokeres.bastionbot.org/images/pokemon/"+(adapterPosition+1).toString()+".png")
-
-            binding.ivPokemon.setImageURI("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+(adapterPosition+1).toString()+".png")
-        }
-        companion object {
-            fun create(parent: ViewGroup): PokemonHolder {
-                val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = DataBindingUtil.inflate<ItemPokemonBinding>(layoutInflater, R.layout.item_pokemon,parent, false)
-                return PokemonHolder(binding)
-            }
-        }
-    }
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as PokemonHolder).bind(getItem(position))
-    }
 
 
     companion object {
@@ -66,6 +50,20 @@ class PokemonAdapter(private val retry: () -> Unit)
     fun setState(state: State) {
         this.state = state
         notifyItemChanged(super.getItemCount())
+    }
+
+    override fun onBindViewHolder(holder: PokemonHolder, position: Int) {
+        val pokemon = (getItem(position))!!
+        holder.binding.pokemon = pokemon
+
+        //binding.ivPokemon.setImageURI("https://pokeres.bastionbot.org/images/pokemon/"+(adapterPosition+1).toString()+".png")
+        holder.binding.ivPokemon.setImageURI("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+(position+1).toString()+".png")
+
+        holder.binding.cwPokemon.setOnClickListener {
+            clickPokemonSubject.onNext(pokemon)
+
+
+        }
     }
 
 }
