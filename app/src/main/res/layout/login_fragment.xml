@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.mauricioburgos.pokeyellow.presentation.viewmodel.LoginViewModel" />
+            type="com.mauricioburgos.pokewise.presentation.viewmodel.LoginViewModel" />
     </data>
 
 

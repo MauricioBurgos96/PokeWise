@@ -7,21 +7,21 @@
 
     <fragment
         android:id="@+id/pokemonsFragment"
-        android:name="com.mauricioburgos.pokeyellow.presentation.view.home.pokemons.PokemonsFragment"
+        android:name="com.mauricioburgos.pokewise.presentation.view.home.pokemons.PokemonsFragment"
         android:label="PokemonsFragment"
         tools:layout="@layout/pokemons_fragment"
 
         />
     <fragment
         android:id="@+id/teamFragment"
-        android:name="com.mauricioburgos.pokeyellow.presentation.view.home.team.TeamFragment"
+        android:name="com.mauricioburgos.pokewise.presentation.view.home.team.TeamFragment"
         android:label="TeamFragment"
         tools:layout="@layout/team_fragment"
 
         />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.mauricioburgos.pokeyellow.presentation.view.home.profile.ProfileFragment"
+        android:name="com.mauricioburgos.pokewise.presentation.view.home.profile.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/profile_fragment"
 

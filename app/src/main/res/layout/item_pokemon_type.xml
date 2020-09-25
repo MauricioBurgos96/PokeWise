@@ -7,7 +7,7 @@
 
         <variable
             name="types"
-            type="com.mauricioburgos.pokeyellow.domain.TypesItem" />
+            type="com.mauricioburgos.pokewise.domain.TypesItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
