@@ -2,15 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="LockedOrientationActivity"
-    package="com.mauricioburgos.pokeyellow">
+    package="com.mauricioburgos.pokewise">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+
 
     <application
-        android:name=".AppController"
+        android:name="com.mauricioburgos.pokewise.AppController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -18,11 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".presentation.view.MainActivity"
+            android:name="com.mauricioburgos.pokewise.presentation.view.MainActivity"
             android:screenOrientation="portrait"
 
         >
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,7 +27,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".presentation.view.home.HomeActivity"
+        <activity android:name="com.mauricioburgos.pokewise.presentation.view.home.HomeActivity"
                   android:screenOrientation="portrait"
             ></activity>
 
