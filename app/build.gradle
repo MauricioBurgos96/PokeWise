@@ -19,6 +19,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "API_BASE_URL", "\"\""
+
     }
 
     buildTypes {
@@ -36,11 +38,32 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+    flavorDimensions "sunwise"
+    productFlavors{
+        dev {
+            dimension "sunwise"
+            versionNameSuffix "-dev"
+            ext{
+                buildConfigField "String", "API_BASE_URL", "\"https://pokeapi.co/api/v2/\""
+            }
+        }
+        prod {
+            dimension "sunwise"
+            versionNameSuffix ""
+            ext{
+                buildConfigField "String", "API_BASE_URL", "\"https://pokeapi.co/api/v2/\""
+
+            }
+        }
+    }
 
 
     dataBinding {
         enabled = true
     }
+
+
+
 
 }
 

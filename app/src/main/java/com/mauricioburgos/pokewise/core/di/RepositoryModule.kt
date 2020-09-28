@@ -1,4 +1,4 @@
-package com.mauricioburgos.pokewise.core.diHilt
+package com.mauricioburgos.pokewise.core.di
 
 import com.dacodes.censos.data.dao.PokemonDatabase
 import com.mauricioburgos.pokewise.core.utils.NetworkHandler

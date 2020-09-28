@@ -1,4 +1,4 @@
-package com.mauricioburgos.pokewise.core.diHilt
+package com.mauricioburgos.pokewise.core.di
 
 import android.content.Context
 import androidx.room.Room

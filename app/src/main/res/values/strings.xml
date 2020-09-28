@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">PokeYellow</string>
-    <string name="api_base_url">https://pokeapi.co/api/v2/</string>
+    <string name="app_name">PokeWise</string>
 
 
     <!-- Strings used for dialogs-->

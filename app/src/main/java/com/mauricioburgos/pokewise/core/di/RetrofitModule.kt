@@ -1,8 +1,9 @@
-package com.mauricioburgos.pokewise.core.diHilt
+package com.mauricioburgos.pokewise.core.di
 
 import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.mauricioburgos.pokewise.BuildConfig
 import com.mauricioburgos.pokewise.R
 import com.mauricioburgos.pokewise.core.utils.PreferencesHelper
 import com.mauricioburgos.pokewise.domain.PokemonApi
@@ -33,9 +34,9 @@ object RetrofitModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit(gson:  Gson, @ApplicationContext appContext: Context, httpClientBuilder : OkHttpClient.Builder): Retrofit.Builder {
+    fun provideRetrofit(httpClientBuilder : OkHttpClient.Builder): Retrofit.Builder {
         return Retrofit.Builder()
-            .baseUrl(appContext.getString(R.string.api_base_url))
+            .baseUrl(BuildConfig.API_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(httpClientBuilder.build())
@@ -54,11 +55,18 @@ object RetrofitModule {
     @Singleton
     @Provides
     fun providesHttpClientBuilder(@ApplicationContext appContext: Context, authorizationInterceptor : AuthorizationInterceptor): OkHttpClient.Builder {
-        val logging = HttpLoggingInterceptor()
-        logging.level = HttpLoggingInterceptor.Level.BODY
+        if(BuildConfig.DEBUG){
+            val logging = HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            }
+            return OkHttpClient.Builder()
+                .addInterceptor(authorizationInterceptor)
+                .addInterceptor(logging)
+                .cache(null)
+        }
+
         return OkHttpClient.Builder()
             .addInterceptor(authorizationInterceptor)
-            .addInterceptor(logging)
             .cache(null)
     }
 

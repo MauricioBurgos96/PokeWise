@@ -34,8 +34,6 @@ class LoginFragment() : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // AppController.component.inject(this)
-
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
