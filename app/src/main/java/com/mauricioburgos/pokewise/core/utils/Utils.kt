@@ -4,6 +4,8 @@ import android.view.View
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.snackbar.Snackbar
+import com.mauricioburgos.pokewise.domain.PokemonDetails
+import com.mauricioburgos.pokewise.presentation.view.dialogs.ConfirmDialog
 import com.mauricioburgos.pokewise.presentation.view.dialogs.MessageDialog
 
 class Utils {
@@ -23,6 +25,13 @@ class Utils {
         dialogFragment.show(fragmentTransaction, MessageDialog::class.simpleName)
     }
 
+     fun showConfirmDialog(listener: ConfirmDialog.DialogListener, message: String, fragmentManager: FragmentManager, pokemonDetails : PokemonDetails) {
+         val dialogFragment = ConfirmDialog(listener,message,pokemonDetails)
+         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+         fragmentTransaction.addToBackStack(null)
+         dialogFragment.show(fragmentTransaction, ConfirmDialog::class.simpleName)
+     }
+
     inline fun View.snack(
         message: String,
         length: Int = Snackbar.LENGTH_INDEFINITE,
@@ -40,6 +49,9 @@ class Utils {
         setAction(action, listener)
         color?.let { setActionTextColor(color) }
     }
+
+
+
 
 
 }

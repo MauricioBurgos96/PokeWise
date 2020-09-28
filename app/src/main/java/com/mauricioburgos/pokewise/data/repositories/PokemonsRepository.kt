@@ -12,6 +12,7 @@ interface PokemonsRepository {
     suspend fun insertPokemon(pokemonDetails: PokemonDetails)
     suspend fun getSavedPokemons() : LiveData<List<PokemonDetails>>
     suspend fun deleteSavedPokemons()
+    suspend fun deletePokemonFromTeam(pokemonDetails: PokemonDetails)
 
 
 }

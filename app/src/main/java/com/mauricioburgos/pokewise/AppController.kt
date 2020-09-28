@@ -20,7 +20,7 @@ class AppController : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        //FontSingleton.getInstance()
+       // FontSingleton.getInstance(applicationContext())
         Fresco.initialize(this)
         FirebaseApp.initializeApp(this)
 

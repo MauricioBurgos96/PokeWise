@@ -51,4 +51,12 @@ class PokemonsRepositoryImpl(
         }
     }
 
+    override suspend fun deletePokemonFromTeam(pokemonDetails: PokemonDetails) {
+        try {
+            pokemonDao.delete(pokemonDetails)
+
+        } catch (e: Throwable) {
+            e.printStackTrace()
+        }    }
+
 }

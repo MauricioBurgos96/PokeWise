@@ -35,25 +35,32 @@
 
             >
 
-           
+
             <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/ivPokemon"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:id="@+id/ivPokemon"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="1:1"
-                android:layout_marginRight="5dp"
                 android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
                 android:layout_marginBottom="10dp"
                 android:padding="5dp"
-                android:layout_marginTop="10dp"
-                app:placeholderImage="@drawable/ic_question"
-                />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:placeholderImage="@drawable/ic_question" />
 
-
-
+            <ImageView
+                android:id="@+id/iv_delete"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="3sp"
+                android:src="@drawable/ic_delete"
+                android:tint="@color/colorRed"
+                app:layout_constraintRight_toLeftOf="@id/ivPokemon"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/ivPokemon" />
 
 
             <TextView
@@ -61,16 +68,16 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
+                android:ellipsize="end"
                 android:gravity="start"
+                android:maxLines="1"
                 android:textColor="@color/colorBlack"
                 android:textSize="22sp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/ivPokemon"
+                app:layout_constraintRight_toLeftOf="@id/iv_delete"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="5dp"
-                android:maxLines="1"
-                android:ellipsize="end"
 
                 />
 
@@ -79,19 +86,17 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
+                android:ellipsize="end"
                 android:gravity="start"
+                android:maxLines="1"
+                android:text="@{`Pokedex# `+ String.valueOf(pokemon.id)}"
                 android:textColor="@color/colorBlack"
                 android:textSize="15sp"
-                android:text="@{`Pokedex# `+ String.valueOf(pokemon.id)}"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/ivPokemon"
-                app:layout_constraintTop_toBottomOf="@id/tvPokemonName"
-                android:layout_marginTop="5dp"
-                android:maxLines="1"
-                android:ellipsize="end"
-                />
-
+                app:layout_constraintRight_toLeftOf="@id/iv_delete"
+                app:layout_constraintTop_toBottomOf="@id/tvPokemonName" />
 
 
             <TextView
@@ -100,13 +105,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="5dp"
+                android:text="@string/height"
                 android:textColor="@color/colorRedPokedex"
                 android:textSize="15sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tvHeightText"
                 app:layout_constraintBottom_toBottomOf="@id/tvHeightText"
-                android:text="@string/height"
-                />
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvHeightText" />
 
             <TextView
                 android:id="@+id/tvHeightText"
@@ -118,7 +122,7 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="15sp"
                 app:layout_constraintLeft_toRightOf="@id/tvHeight"
-                app:layout_constraintRight_toLeftOf="@id/ivPokemon"
+                app:layout_constraintRight_toLeftOf="@id/iv_delete"
                 app:layout_constraintTop_toBottomOf="@id/tvPokemonNumber"
                 tools:text="(8.8km)" />
 
@@ -129,13 +133,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="5dp"
+                android:text="@string/weight"
                 android:textColor="@color/colorRedPokedex"
                 android:textSize="15sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tvWeightText"
                 app:layout_constraintBottom_toBottomOf="@id/tvWeightText"
-                android:text="@string/weight"
-                />
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvWeightText" />
 
             <TextView
                 android:id="@+id/tvWeightText"
@@ -143,16 +146,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="20dp"
                 android:layout_marginRight="5dp"
+                android:layout_marginBottom="20dp"
                 android:textColor="@color/colorBlack"
                 android:textSize="15sp"
-                app:layout_constraintLeft_toRightOf="@id/tvHeight"
-                app:layout_constraintRight_toLeftOf="@id/ivPokemon"
-                app:layout_constraintTop_toBottomOf="@id/tvHeightText"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/tvHeight"
+                app:layout_constraintRight_toLeftOf="@id/iv_delete"
+                app:layout_constraintTop_toBottomOf="@id/tvHeightText"
                 tools:text="(8.8km)" />
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

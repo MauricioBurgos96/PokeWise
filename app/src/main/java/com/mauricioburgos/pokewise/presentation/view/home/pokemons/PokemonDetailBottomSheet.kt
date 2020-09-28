@@ -53,6 +53,8 @@ class PokemonDetailBottomSheet(private  val pokemonId: Int) : BottomSheetDialogF
                     CoroutineScope(IO).launch {
                         pokemonInfoViewModel.savePokemonDb(pokemonDetails!!)
                     }
+                    Utils.displayMessage("","Pokémon añadido al equipo", requireActivity().supportFragmentManager!!)
+
                     dismiss()
                 }
             }

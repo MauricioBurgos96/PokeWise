@@ -38,5 +38,12 @@
     <string name="logout">Salir</string>
     <string name="delete_team">Borrar equipo</string>
 
+    <!-- Strings for Confirm pokemon-->
+
+    <string name="delete_pokemon">¿Eliminar pokémon del equipo?</string>
+    <string name="delete">Eliminar</string>
+    <string name="cancel">Cancelar</string>
+
+
 
 </resources>

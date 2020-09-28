@@ -45,6 +45,11 @@ constructor(
     }
   }
 
+  suspend fun deletePokemonFromTeam(pokemonDetails : PokemonDetails){
+    pokemonRepository.deletePokemonFromTeam(pokemonDetails)
+
+  }
+
 
 
 
