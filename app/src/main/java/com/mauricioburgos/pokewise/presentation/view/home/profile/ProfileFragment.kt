@@ -7,10 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat.finishAffinity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import com.mauricioburgos.pokewise.AppController
@@ -22,18 +24,18 @@ import com.mauricioburgos.pokewise.databinding.ProfileFragmentBinding
 import com.mauricioburgos.pokewise.presentation.view.MainActivity
 import com.mauricioburgos.pokewise.presentation.view.home.HomeActivity
 import com.mauricioburgos.pokewise.presentation.viewmodel.SettingsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class ProfileFragment() : Fragment() {
 
 
-    private val settingsViewModel: SettingsViewModel by lazy {
-        ViewModelProvider(this@ProfileFragment).get(SettingsViewModel::class.java)
-    }
+    private val settingsViewModel: SettingsViewModel by viewModels()
+
 
     @Inject
     lateinit var preferencesHelper: PreferencesHelper
@@ -41,7 +43,6 @@ class ProfileFragment() : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AppController.component.inject(this)
 
     }
 
@@ -55,31 +56,33 @@ class ProfileFragment() : Fragment() {
 
         (activity as HomeActivity).changeToolbarText(getString(R.string.my_settings))
 
-        binding.logout.setOnClickListener {
-            CoroutineScope(Dispatchers.IO).launch {
-                settingsViewModel.deleteAllSavedPokemons()
+        binding.apply {
+
+            logout.setOnClickListener {
+                CoroutineScope(Dispatchers.IO).launch {
+                    settingsViewModel.deleteAllSavedPokemons()
+
+                }
+                preferencesHelper.putBoolean(Constants.PKEY_IS_LOGGED, false)
+                finishAffinity(requireActivity())
+                val intent = Intent(activity, MainActivity::class.java)
+                preferencesHelper.putBoolean(Constants.PKEY_IS_LOGGED, false)
+                val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
+                editor.clear()
+                editor.commit()
+                startActivity(intent)
 
             }
-            preferencesHelper.putBoolean(Constants.PKEY_IS_LOGGED, false)
-            finishAffinity(activity!!)
-            val intent = Intent(activity, MainActivity::class.java)
-            preferencesHelper.putBoolean(Constants.PKEY_IS_LOGGED, false)
-            val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
-            editor.clear()
-            editor.commit()
-            startActivity(intent)
 
-        }
+            deleteTeam.setOnClickListener {
+                CoroutineScope(Dispatchers.IO).launch {
+                    settingsViewModel.deleteAllSavedPokemons()
 
-        binding.deleteTeam.setOnClickListener {
-            CoroutineScope(Dispatchers.IO).launch {
-                settingsViewModel.deleteAllSavedPokemons()
+                }
+                Toast.makeText(context, "Se borro el equipo", Toast.LENGTH_SHORT).show()
 
             }
-            Toast.makeText(context, "Se borro el equipo", Toast.LENGTH_SHORT).show()
-
         }
-
         return binding.root
     }
 

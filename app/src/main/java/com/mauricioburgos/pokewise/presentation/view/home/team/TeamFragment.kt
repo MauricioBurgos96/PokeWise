@@ -16,8 +16,9 @@ import com.mauricioburgos.pokewise.databinding.TeamFragmentBinding
 import com.mauricioburgos.pokewise.presentation.view.adapters.SavedPokemonAdapter
 import com.mauricioburgos.pokewise.presentation.view.home.HomeActivity
 import com.mauricioburgos.pokewise.presentation.viewmodel.PokemonTeamViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class TeamFragment() : Fragment() {
     private val adapter = SavedPokemonAdapter(mutableListOf())
     lateinit var binding: TeamFragmentBinding

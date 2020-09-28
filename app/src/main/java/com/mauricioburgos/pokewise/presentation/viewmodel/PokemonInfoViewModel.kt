@@ -1,18 +1,29 @@
 package com.mauricioburgos.pokewise.presentation.viewmodel
 
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.hilt.Assisted
+import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.*
 import com.mauricioburgos.pokewise.AppController
 import com.mauricioburgos.pokewise.core.platform.Failure
 import com.mauricioburgos.pokewise.data.repositories.PokemonsRepository
+import com.mauricioburgos.pokewise.data.repositories.UserRepository
 import com.mauricioburgos.pokewise.domain.ErrorResponse
 import com.mauricioburgos.pokewise.domain.PokemonDetails
 import com.mauricioburgos.pokewise.usecases.GetPokemonInfoUseCase
+import com.mauricioburgos.pokewise.usecases.LoginUseCase
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
-class PokemonInfoViewModel() : ViewModel() {
+class PokemonInfoViewModel
+@ViewModelInject
+constructor(
+  private val pokemonRepository: PokemonsRepository,
+  private val getPokemonInfoUseCase: GetPokemonInfoUseCase,
+  @Assisted private val savedStateHandle: SavedStateHandle
+
+) : ViewModel()
+{
 
   val error : MutableLiveData<ErrorResponse> = MutableLiveData<ErrorResponse>()
   private val allPokemon = MutableLiveData<PokemonDetails>()
@@ -22,22 +33,13 @@ class PokemonInfoViewModel() : ViewModel() {
 
   fun getMPokemon() = allPokemon
 
-  @Inject
-  lateinit var pokemonRepository: PokemonsRepository
-
-
-
-
-  @Inject
-  lateinit var getPokemonInfoUseCase: GetPokemonInfoUseCase
   fun getAllPokemons() = allPokemonsSaved
 
 
   init {
-    AppController.component.inject(this)
-    getAllPokemonsSaved()
-
-
+    viewModelScope.launch {
+      getAllPokemonsSaved()
+    }
   }
 
 
@@ -47,7 +49,7 @@ class PokemonInfoViewModel() : ViewModel() {
   }
 
 
-  private fun getAllPokemonsSaved(){
+  private suspend fun getAllPokemonsSaved(){
     allPokemonsSaved.addSource(pokemonRepository.getSavedPokemons()) { movies ->
       allPokemonsSaved.postValue(movies)
     }

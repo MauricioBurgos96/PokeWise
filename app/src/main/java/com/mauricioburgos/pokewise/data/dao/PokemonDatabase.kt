@@ -23,20 +23,21 @@ abstract class PokemonDatabase : RoomDatabase(){
 
     companion object {
 
-        private var INSTANCE: PokemonDatabase? = null
+        val DATABASE_NAME: String = "pokemon_db"
 
-        private val lock = Any()
 
-        fun getInstance(context: Context): PokemonDatabase {
-            synchronized(lock) {
-                if (INSTANCE == null) {
-                    INSTANCE =
-                        Room.databaseBuilder(context, PokemonDatabase::class.java, "pokemon.db")
-                            .fallbackToDestructiveMigration()
-                            .build()
-                }
-                return INSTANCE!!
-            }
-        }
+      // private var INSTANCE: PokemonDatabase? = null
+      // private val lock = Any()
+      // fun getInstance(context: Context): PokemonDatabase {
+      //     synchronized(lock) {
+      //         if (INSTANCE == null) {
+      //             INSTANCE =
+      //                 Room.databaseBuilder(context, PokemonDatabase::class.java, "pokemon.db")
+      //                     .fallbackToDestructiveMigration()
+      //                     .build()
+      //         }
+      //         return INSTANCE!!
+      //     }
+      // }
     }
 }

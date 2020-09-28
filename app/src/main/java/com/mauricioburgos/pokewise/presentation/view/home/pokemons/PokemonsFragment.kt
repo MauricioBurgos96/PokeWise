@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -23,10 +24,14 @@ import com.mauricioburgos.pokewise.databinding.PokemonsFragmentBinding
 import com.mauricioburgos.pokewise.domain.State
 import com.mauricioburgos.pokewise.presentation.view.adapters.PokemonAdapter
 import com.mauricioburgos.pokewise.presentation.view.home.HomeActivity
+import com.mauricioburgos.pokewise.presentation.viewmodel.LoginViewModel
 import com.mauricioburgos.pokewise.presentation.viewmodel.PokemonsViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.internal.managers.ViewComponentManager
 import io.reactivex.disposables.Disposable
 
 
+@AndroidEntryPoint
 class PokemonsFragment() : Fragment() {
 
     lateinit var navController: NavController
@@ -35,14 +40,13 @@ class PokemonsFragment() : Fragment() {
     private lateinit var pokemonListAdapter: PokemonAdapter
     private var subscribe: Disposable? = null
 
-    private val pokemonsViewModel: PokemonsViewModel by lazy {
-        ViewModelProvider(this@PokemonsFragment).get(PokemonsViewModel::class.java)
-    }
+
+    private val pokemonsViewModel: PokemonsViewModel by viewModels()
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AppController.component.inject(this)
         observeError()
 
     }
@@ -64,7 +68,7 @@ class PokemonsFragment() : Fragment() {
 
         (activity as HomeActivity).changeToolbarText(getString(R.string.all_pokemons))
 
-        if (isOnline(context!!)) {
+        if (isOnline(requireContext())) {
             binding.placeholderLayout.visibility = View.INVISIBLE
 
             initAdapter()
@@ -75,7 +79,7 @@ class PokemonsFragment() : Fragment() {
             Utils.displayMessage(
                 "Error",
                 "No hay conexión a internet",
-                activity!!.supportFragmentManager!!
+                requireActivity().supportFragmentManager!!
             )
 
             binding.placeholderLayout.visibility = View.VISIBLE
@@ -106,9 +110,7 @@ class PokemonsFragment() : Fragment() {
 
         pokemonsViewModel.getState().observe(viewLifecycleOwner, Observer { state ->
             if (pokemonsViewModel.listIsEmpty() && state == State.LOADING){
-                progressDialog.show(
-                    context!!
-                )
+                progressDialog.show(requireContext())
             }
              else {
                 if(progressDialog.dialog!=null){
@@ -125,7 +127,7 @@ class PokemonsFragment() : Fragment() {
     private fun observeError() {
         pokemonsViewModel.getError().observe(this, Observer { state ->
 
-            Utils.displayMessage("",state,activity!!.supportFragmentManager)
+            Utils.displayMessage("",state,requireActivity().supportFragmentManager)
         })
     }
 
@@ -133,7 +135,7 @@ class PokemonsFragment() : Fragment() {
         subscribe = pokemonListAdapter.clickPokemonEvent
             .subscribe { position ->
                 val bottomSheetFragment = PokemonDetailBottomSheet(position + 1)
-                bottomSheetFragment.show(activity!!.supportFragmentManager, bottomSheetFragment.tag)
+                bottomSheetFragment.show(requireActivity().supportFragmentManager, bottomSheetFragment.tag)
             }
     }
 
@@ -165,6 +167,9 @@ class PokemonsFragment() : Fragment() {
         }
         return false
     }
+
+
+
 }
 
 

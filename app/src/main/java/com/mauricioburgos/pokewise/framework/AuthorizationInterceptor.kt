@@ -10,7 +10,7 @@ class AuthorizationInterceptor(private val preferencesHelper: PreferencesHelper)
     override fun intercept(chain: Interceptor.Chain): Response {
         val original = chain.request()
         val builder = original.newBuilder()
-            .method(original.method(), original.body())
+            .method(original.method, original.body)
 
         preferencesHelper.getString(Constants.PKEY_TOKEN)?.let {
             builder.header("Authorization", "Bearer $it")

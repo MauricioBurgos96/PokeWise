@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -16,10 +17,13 @@ import com.mauricioburgos.pokewise.databinding.PokemonDetailBottomSheetBinding
 import com.mauricioburgos.pokewise.domain.PokemonDetails
 import com.mauricioburgos.pokewise.presentation.view.adapters.PokemonTypeAdapter
 import com.mauricioburgos.pokewise.presentation.viewmodel.PokemonInfoViewModel
+import com.mauricioburgos.pokewise.presentation.viewmodel.PokemonsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class PokemonDetailBottomSheet(private  val pokemonId: Int) : BottomSheetDialogFragment() {
 
     lateinit var binding: PokemonDetailBottomSheetBinding
@@ -27,9 +31,10 @@ class PokemonDetailBottomSheet(private  val pokemonId: Int) : BottomSheetDialogF
     private val adapter = PokemonTypeAdapter(mutableListOf())
     var  pokemonDetails: PokemonDetails? = null
 
-    private val pokemonInfoViewModel: PokemonInfoViewModel by lazy {
-        ViewModelProvider(this@PokemonDetailBottomSheet).get(PokemonInfoViewModel::class.java)
-    }
+
+    private val pokemonInfoViewModel: PokemonInfoViewModel by viewModels()
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +42,6 @@ class PokemonDetailBottomSheet(private  val pokemonId: Int) : BottomSheetDialogF
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.pokemon_detail_bottom_sheet,container,false)
-
 
             binding.apply{
             typesRecyclerView.adapter = adapter
@@ -56,7 +60,7 @@ class PokemonDetailBottomSheet(private  val pokemonId: Int) : BottomSheetDialogF
 
         pokemonInfoViewModel.error.observe(viewLifecycleOwner, Observer {
             progressDialog.dialog!!.dismiss()
-            Utils.displayMessage("Error",it.message!!, activity!!.supportFragmentManager!!)
+            Utils.displayMessage("Error",it.message!!, requireActivity().supportFragmentManager!!)
             dismiss()
 
         })
@@ -74,7 +78,7 @@ class PokemonDetailBottomSheet(private  val pokemonId: Int) : BottomSheetDialogF
     override fun onResume() {
         super.onResume()
         pokemonInfoViewModel.loadPokemon(pokemonId)
-        progressDialog.show(context!!)
+        progressDialog.show(requireContext())
     }
 
     private fun observePokemon ()
@@ -82,11 +86,14 @@ class PokemonDetailBottomSheet(private  val pokemonId: Int) : BottomSheetDialogF
         pokemonInfoViewModel.getMPokemon().observe(viewLifecycleOwner, Observer { pokemon ->
             progressDialog.dialog!!.dismiss()
             pokemonDetails=pokemon
-            binding.tvPokemonTitle.text = pokemon.name.capitalize()
-            binding.tvPokemonDistance.text = "#${(pokemonId).toString()}"
-            binding.ivPokemon.setImageURI("https://pokeres.bastionbot.org/images/pokemon/"+(pokemonId).toString()+".png")
-            binding.tvHeightText.text = "${(pokemon.height * 10)} Cm"
-            binding.tvWeightText.text = "${(pokemon.weight / 10)} Kg"
+
+            binding.apply {
+               tvPokemonTitle.text = pokemon.name.capitalize()
+               tvPokemonDistance.text = "#${(pokemonId).toString()}"
+               ivPokemon.setImageURI("https://pokeres.bastionbot.org/images/pokemon/" + (pokemonId).toString() + ".png")
+               tvHeightText.text = "${(pokemon.height * 10)} Cm"
+               tvWeightText.text = "${(pokemon.weight / 10)} Kg"
+            }
             adapter.setData(pokemon.types!!)
         })
     }

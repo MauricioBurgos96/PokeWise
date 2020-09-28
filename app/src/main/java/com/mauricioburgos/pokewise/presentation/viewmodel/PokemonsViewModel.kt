@@ -1,30 +1,30 @@
 package com.mauricioburgos.pokewise.presentation.viewmodel
 
+import androidx.hilt.Assisted
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.mauricioburgos.pokewise.AppController
 import com.mauricioburgos.pokewise.data.datasource.PokemonDataSource
 import com.mauricioburgos.pokewise.data.datasource.PokemonDataSourceFactory
 import com.mauricioburgos.pokewise.domain.*
-import com.mauricioburgos.pokewise.framework.ApiProvider
-import javax.inject.Inject
 
 
-class PokemonsViewModel() : ViewModel() {
+class PokemonsViewModel
+@ViewModelInject
+constructor(
+    private val pokemonApi: PokemonApi,
+    @Assisted private val savedStateHandle: SavedStateHandle
+) : ViewModel() {
 
     var newsList: LiveData<PagedList<Pokemon>>
     private val pageSize = 50
     private val pokemonDataSourceFactory: PokemonDataSourceFactory
 
-    @Inject
-    lateinit var apiProvider: ApiProvider
-
-
     init {
-        AppController.component.inject(this)
 
-        pokemonDataSourceFactory = PokemonDataSourceFactory(apiProvider.getEndpoint(PokemonApi::class.java))
+        pokemonDataSourceFactory =
+            PokemonDataSourceFactory(pokemonApi)
         val config = PagedList.Config.Builder()
             .setPageSize(pageSize)
             .setInitialLoadSizeHint(pageSize)

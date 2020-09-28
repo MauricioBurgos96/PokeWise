@@ -1,5 +1,4 @@
-package com.mauricioburgos.pokewise.core.di
-
+package com.mauricioburgos.pokewise.core.diHilt
 
 import com.dacodes.censos.data.dao.PokemonDatabase
 import com.mauricioburgos.pokewise.core.utils.NetworkHandler
@@ -10,55 +9,56 @@ import com.mauricioburgos.pokewise.data.repositories.PokemonsRepository
 import com.mauricioburgos.pokewise.data.repositories.UserRepository
 import com.mauricioburgos.pokewise.domain.PokemonApi
 import com.mauricioburgos.pokewise.domain.UserApi
-import com.mauricioburgos.pokewise.framework.ApiProvider
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import javax.inject.Singleton
 
+@InstallIn(ApplicationComponent::class)
 @Module
-class RepositoryModule {
-    @Provides
+object RepositoryModule {
+
     @Singleton
+    @Provides
     fun providesUserRepository(
         networkHandler: NetworkHandler,
-        apiProvider: ApiProvider,
+        userApi: UserApi,
         preferencesHelper: PreferencesHelper
     ) : UserRepository = UserRepositoryImpl(
         networkHandler,
-        apiProvider.getEndpoint(UserApi::class.java),
+        userApi,
         preferencesHelper
     )
 
-
-    @Provides
     @Singleton
+    @Provides
     fun providesPokemonRepository(
         networkHandler: NetworkHandler,
         database: PokemonDatabase,
-        apiProvider: ApiProvider,
+        pokemonApi: PokemonApi,
         preferencesHelper: PreferencesHelper
     ) : PokemonsRepository = PokemonsRepositoryImpl(
         networkHandler,
         database.pokemonDao(),
-        apiProvider.getEndpoint(PokemonApi::class.java),
+        pokemonApi,
         preferencesHelper
 
     )
 
-    @Provides
-    @Singleton
-    fun providesPokemonRepositoryImp(
-        networkHandler: NetworkHandler,
-        database: PokemonDatabase,
-        apiProvider: ApiProvider,
-        preferencesHelper: PreferencesHelper
-    ) : PokemonsRepositoryImpl = PokemonsRepositoryImpl(
-        networkHandler,
-        database.pokemonDao(),
-        apiProvider.getEndpoint(PokemonApi::class.java),
-        preferencesHelper
+    // @Provides
+    // @Singleton
+    // fun providesPokemonRepositoryImp(
+    //     networkHandler: NetworkHandler,
+    //     database: PokemonDatabase,
+    //     apiProvider: ApiProvider,
+    //     preferencesHelper: PreferencesHelper
+    // ) : PokemonsRepositoryImpl = PokemonsRepositoryImpl(
+    //     networkHandler,
+    //     database.pokemonDao(),
+    //     apiProvider.getEndpoint(PokemonApi::class.java),
+    //     preferencesHelper
 
-    )
-
+    // )
 
 }
