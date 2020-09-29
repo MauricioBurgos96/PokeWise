@@ -45,6 +45,7 @@ EXTRA:
 	-RxJava
 	-Either
 	-UseCases
+	-Build Variants ( Product flavors)
 	-Samples Unit Testing
 	-Samples UI Testing
 	-etc
