@@ -4,25 +4,15 @@ import android.app.Application
 import android.content.Context
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.google.firebase.FirebaseApp
-import com.mauricioburgos.pokewise.core.di.AppComponent
-import com.mauricioburgos.pokewise.core.di.AppModule
-import com.mauricioburgos.pokewise.core.di.DaggerAppComponent
 import com.mauricioburgos.pokewise.core.utils.FontSingleton
+import dagger.hilt.android.HiltAndroidApp
 
-
+@HiltAndroidApp
 class AppController : Application() {
-
-
-
-    init {
-        instance = this
-    }
 
 
     companion object {
         private var instance: AppController? = null
-        lateinit var component: AppComponent
-
         fun applicationContext() : Context {
             return instance!!.applicationContext
         }
@@ -30,15 +20,10 @@ class AppController : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        FontSingleton.getInstance()
+       // FontSingleton.getInstance(applicationContext())
         Fresco.initialize(this)
         FirebaseApp.initializeApp(this)
 
-        component = DaggerAppComponent
-            .builder()
-            .appModule(AppModule(this))
-            .build()
-        component.inject(this)
     }
 
 }

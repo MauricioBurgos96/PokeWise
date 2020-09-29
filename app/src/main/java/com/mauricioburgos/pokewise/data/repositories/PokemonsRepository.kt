@@ -10,8 +10,9 @@ interface PokemonsRepository {
 
     fun getPokemonInfo(id: Int) : Either<Failure, PokemonDetails>
     suspend fun insertPokemon(pokemonDetails: PokemonDetails)
-    fun getSavedPokemons() : LiveData<List<PokemonDetails>>
+    suspend fun getSavedPokemons() : LiveData<List<PokemonDetails>>
     suspend fun deleteSavedPokemons()
+    suspend fun deletePokemonFromTeam(pokemonDetails: PokemonDetails)
 
 
 }

@@ -9,10 +9,16 @@ import com.mauricioburgos.pokewise.core.utils.FontSingleton
 import com.mauricioburgos.pokewise.databinding.ItemPokemonTypeBinding
 import com.mauricioburgos.pokewise.databinding.ItemSavedPokemonBinding
 import com.mauricioburgos.pokewise.domain.PokemonDetails
+import io.reactivex.Observable
+import io.reactivex.subjects.PublishSubject
 
 
 class SavedPokemonAdapter(private val types: MutableList<PokemonDetails>)
     : RecyclerView.Adapter<SavedPokemonAdapter.PokemonTypeHolder>() {
+
+    private val clickPokemonSubject = PublishSubject.create<PokemonDetails>()
+    val clickPokemonEvent: Observable<PokemonDetails> = clickPokemonSubject
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonTypeHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -25,12 +31,19 @@ class SavedPokemonAdapter(private val types: MutableList<PokemonDetails>)
     override fun onBindViewHolder(holder: PokemonTypeHolder, position: Int) {
         val pokemonDetails = types[position]
         holder.binding.pokemon = pokemonDetails
-        holder.binding.tvPokemonName.typeface= FontSingleton.fontBold
-        holder.binding.tvPokemonName.text= pokemonDetails.name.capitalize()
+        holder.binding.apply {
 
-        holder.binding.ivPokemon.setImageURI("https://pokeres.bastionbot.org/images/pokemon/"+(pokemonDetails.id).toString()+".png")
-        holder.binding.tvHeightText.text = "${(pokemonDetails.height * 10)} Cm"
-        holder.binding.tvWeightText.text = "${(pokemonDetails.weight / 10)} Kg"
+            tvPokemonName.typeface= FontSingleton.fontBold
+            tvPokemonName.text= pokemonDetails.name.capitalize()
+            ivPokemon.setImageURI("https://pokeres.bastionbot.org/images/pokemon/"+(pokemonDetails.id).toString()+".png")
+            tvHeightText.text = "${(pokemonDetails.height * 10)} Cm"
+            tvWeightText.text = "${(pokemonDetails.weight / 10)} Kg"
+
+            ivDelete.setOnClickListener {
+                clickPokemonSubject.onNext(pokemonDetails)
+            }
+        }
+
 
 
     }

@@ -2,6 +2,7 @@ package com.mauricioburgos.pokewise.data.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.dacodes.censos.data.dao.BaseDao
 import com.mauricioburgos.pokewise.domain.PokemonDetails
 
 
@@ -19,4 +20,7 @@ interface PokemonDao {
 
     @Query("DELETE FROM team_pokemons")
     suspend fun deleteAllSavedPokemons()
+
+    @Delete
+    fun delete(pokemonDetails: PokemonDetails)
 }

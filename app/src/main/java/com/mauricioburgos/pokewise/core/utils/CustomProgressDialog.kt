@@ -11,6 +11,7 @@ import android.graphics.drawable.Drawable
 import android.os.Build
 import androidx.core.content.res.ResourcesCompat
 import com.mauricioburgos.pokewise.R
+import dagger.hilt.android.internal.managers.ViewComponentManager
 import kotlinx.android.synthetic.main.progress_dialog_layout.view.*
 
 class CustomProgressDialog {
@@ -18,7 +19,16 @@ class CustomProgressDialog {
     var dialog: CustomDialog? = null
 
     fun show(context: Context): Dialog {
-        return show(context, null)
+        var contextWrapper = context
+        if (context is ViewComponentManager.FragmentContextWrapper) {
+            contextWrapper = context.baseContext
+        }
+        else
+        {
+            contextWrapper =context
+        }
+
+        return show(contextWrapper, null)
     }
 
     fun show(context: Context, title: CharSequence?): Dialog {
@@ -27,6 +37,8 @@ class CustomProgressDialog {
         if (title != null) {
             view.cp_title.text = title
         }
+
+
 
         // Card Color
         view.cp_cardview.setCardBackgroundColor(Color.parseColor("#70000000"))

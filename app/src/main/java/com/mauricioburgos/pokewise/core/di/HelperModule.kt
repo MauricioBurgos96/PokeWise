@@ -1,22 +1,23 @@
 package com.mauricioburgos.pokewise.core.di
 
 import android.content.Context
-import com.mauricioburgos.pokewise.framework.AuthorizationInterceptor
 import com.mauricioburgos.pokewise.core.utils.PreferencesHelper
-import com.mauricioburgos.pokewise.framework.ApiProvider
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Singleton
 
+@InstallIn(ApplicationComponent::class)
 @Module
-class HelperModule {
-    @Provides
-    @Singleton
-    fun providesPreferencesHelper(context: Context) = PreferencesHelper(context)
+object HelperModule {
 
-    @Provides
     @Singleton
-    fun provideApiProvider(preferenceHelper: PreferencesHelper, context: Context): ApiProvider =
-        ApiProvider(AuthorizationInterceptor(preferenceHelper), context)
+    @Provides
+    fun providesPreferencesHelper(@ApplicationContext appContext: Context) = PreferencesHelper(appContext)
+
+
+
 
 }

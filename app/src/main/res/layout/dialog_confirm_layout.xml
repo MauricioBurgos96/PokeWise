@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/white_round_rectangle"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        >
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+
+        <TextView
+            android:id="@+id/text_confirm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:textColor="@color/colorRed"
+            android:textColorHint="@color/colorGray"
+            android:textSize="16sp"
+            android:text="@string/delete_pokemon"
+            app:layout_constraintLeft_toLeftOf="@id/guideline2"
+            app:layout_constraintRight_toRightOf="@id/guideline3"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <Button
+            android:id="@+id/btn_cancel_confirm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/red_round_rectangle"
+            android:text="@string/cancel"
+            android:textColor="@color/colorWhite"
+            android:layout_marginTop="40dp"
+            app:layout_constraintTop_toBottomOf="@id/text_confirm"
+            app:layout_constraintLeft_toLeftOf="@id/guideline2"
+            app:layout_constraintRight_toRightOf="@id/guideline4"
+            android:textAllCaps="false"
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:paddingBottom="13dp"
+            android:paddingTop="13dp"
+            android:layout_marginRight="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="20dp"
+            />
+
+        <Button
+            android:id="@+id/btn_accept_confirm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/red_round_rectangle"
+            android:text="@string/acept"
+            android:textColor="@color/colorWhite"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="5dp"
+            android:textAllCaps="false"
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:paddingBottom="13dp"
+            android:paddingTop="13dp"
+            app:layout_constraintTop_toBottomOf="@id/text_confirm"
+            app:layout_constraintLeft_toLeftOf="@id/guideline4"
+            app:layout_constraintRight_toLeftOf="@id/guideline3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="20dp"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+

@@ -1,8 +1,11 @@
 package com.mauricioburgos.pokewise.presentation.viewmodel
 
 import androidx.databinding.ObservableField
+import androidx.hilt.Assisted
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.mauricioburgos.pokewise.AppController
 import com.mauricioburgos.pokewise.core.platform.Failure
@@ -14,7 +17,13 @@ import com.mauricioburgos.pokewise.usecases.LoginUseCase
 
 import javax.inject.Inject
 
-class LoginViewModel() : ViewModel() {
+class LoginViewModel
+@ViewModelInject
+constructor(
+    private val loginUseCase: LoginUseCase,
+    private val userRepository: UserRepository,
+    @Assisted private val savedStateHandle: SavedStateHandle
+) : ViewModel() {
 
     var mEmailAddress = ObservableField<String>("")
     var mPassword = ObservableField<String>("")
@@ -23,18 +32,6 @@ class LoginViewModel() : ViewModel() {
     val error : MutableLiveData<ErrorResponse> by lazy { MutableLiveData<ErrorResponse>() }
 
     private var userMutableLiveData = MutableLiveData<UserSigninRequest>()
-
-
-    @Inject
-    lateinit var loginUseCase: LoginUseCase
-
-    @Inject
-    lateinit var userRepository: UserRepository
-
-    init {
-        AppController.component.inject(this)
-
-    }
 
 
     fun getLoginUserLiveData(): LiveData<UserSigninRequest> = userMutableLiveData

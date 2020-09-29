@@ -18,7 +18,6 @@ class PokemonsRepositoryImpl(
     private val preferencesHelper: PreferencesHelper
 ): PokemonsRepository, ApiRequest {
 
-    private val allPokemons: LiveData<List<PokemonDetails>> = pokemonDao.getAllPokemonTeam()
 
     override fun getPokemonInfo(id: Int): Either<Failure, PokemonDetails> {
 
@@ -39,7 +38,9 @@ class PokemonsRepositoryImpl(
         }
     }
 
-    override fun getSavedPokemons()= allPokemons
+    override suspend fun getSavedPokemons() : LiveData<List<PokemonDetails>> {
+       return pokemonDao.getAllPokemonTeam()
+    }
 
     override suspend fun deleteSavedPokemons() {
         try {
@@ -49,5 +50,13 @@ class PokemonsRepositoryImpl(
             e.printStackTrace()
         }
     }
+
+    override suspend fun deletePokemonFromTeam(pokemonDetails: PokemonDetails) {
+        try {
+            pokemonDao.delete(pokemonDetails)
+
+        } catch (e: Throwable) {
+            e.printStackTrace()
+        }    }
 
 }
