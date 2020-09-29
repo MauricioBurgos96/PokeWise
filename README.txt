@@ -1,7 +1,7 @@
-Configuration steps to run Pokeyellow:
+Configuration steps to run PokeWise:
 
-1.- Clone or Download the repository from: https://github.com/MauricioBurgos96/PokeYellow.git
-    ej:  $ git clone https://github.com/MauricioBurgos96/PokeYellow.git
+1.- Clone or Download the repository from: https://github.com/MauricioBurgos96/PokeWise.git
+    ej:  $ git clone https://github.com/MauricioBurgos96/PokeWise.git
 
     or you can use an IDE to help this task like SOURCETREE : https://www.sourcetreeapp.com/
 
@@ -25,7 +25,7 @@ Configuration steps to run Pokeyellow:
 
 
 
-				ENJOY :)
+				 ENJOY :)
 
 EXTRA:
 
@@ -39,10 +39,12 @@ EXTRA:
 	-Android Paging
 	-Live data
 	-Navigation Components
-	-Dependency injection (Dagger 2)
+	-Dependency injection (Hilt)
 	-Retrofit
 	-Coroutines
 	-RxJava
+	-Either
+	-UseCases
 	-Samples Unit Testing
 	-Samples UI Testing
 	-etc
