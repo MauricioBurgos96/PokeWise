@@ -12,7 +12,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4ClassRunner::class)
-class HomeActivityTest{
+class UiTestingPokeWise{
 
     @get: Rule
     val activityRule = ActivityScenarioRule(HomeActivity::class.java)
