@@ -25,7 +25,7 @@ Configuration steps to run PokeWise:
 
 
 
-				ENJOY :)
+				 ENJOY :)
 
 EXTRA:
 
